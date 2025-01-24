@@ -9,4 +9,5 @@ Maybe i'll make that new script work again some day.
 
 Use it at your own risk.
 
-2. 
+2. has something to do with a) that remastering-thing i've been doing b) installing vlc into devuan beowulf livecd
+
