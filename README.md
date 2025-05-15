@@ -9,5 +9,8 @@ Maybe i'll make that new script work again some day.
 
 Use it at your own risk.
 
-2. has something to do with a) that remastering-thing i've been doing b) installing vlc into devuan beowulf livecd
+2. obviously beowulf-vlc has something to do with a) that remastering-thing i've been doing b) installing vlc into devuan beowulf livecd
+i think there were also alternate sources.list which included "debian multimedia project":s repository
 
+3. misc contains some configuration files i found useful with debian-ish distrubitions
+4. may have something to do with firefox profiles
