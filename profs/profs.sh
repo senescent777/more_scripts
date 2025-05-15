@@ -1,7 +1,7 @@
 #dqb "#i've known since year 2003 that netscape/mozilla/firefox profiles can be a Pain In the Ass"
 #csleep 6
 #lukkotiedostojen hävitys oli kanssa 1 juttu mikä piti uistaa tehdä...
-#TODO:siirto git:in sisllä eri repositoryyn
+#TEHTY:siirto git:in sisällä eri repositoryyn
 
 function oldprof() {
 	dqb "cprof1 ${1} ${2}"
