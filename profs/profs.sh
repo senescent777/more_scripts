@@ -1,7 +1,7 @@
 #dqb "#i've known since year 2003 that netscape/mozilla/firefox profiles can be a Pain In the Ass"
 #csleep 6
+
 #lukkotiedostojen hävitys oli kanssa 1 juttu mikä piti uistaa tehdä...
-#TEHTY:siirto git:in sisällä eri repositoryyn
 
 function oldprof() {
 	dqb "cprof1 ${1} ${2}"
@@ -53,8 +53,9 @@ function createnew() {
 	csleep 3
 }
 
-#VAIH:profiilin hakemiseen $(${}) - tyyppinen juttu jatkossa, skripti tai fktio
-#findprof=$(find ~/.mozilla/firefox -type d -name '*esr*' | grep -v '+' | tail -n 1)
+function findprof() {
+	result=$(find ${1} -type d  | grep -v '+' | grep ${2}  | head -n 1 )
+}
 
 function copy_to() {
 	debug=1
@@ -68,8 +69,10 @@ function copy_to() {
 	local tget
 
 	#saattaisi onnistua ilman greppiäkin? man find...
-	tget=$(find ${2} -type d | grep -v '+' | grep ${1} | head -n 1)
-	dqb "TGET= ${tget}"
+	#tget=$(find ${2} -type d | grep -v '+' | grep ${1} | head -n 1)
+	#dqb "TGET= ${tget}"
+	findprof ${2} ${1}
+	tget=${result}
 
 	dqb "IN 3 SECONDS: sudo mv ${3}/* ${tget}"
 	csleep 3
@@ -140,7 +143,11 @@ function exp_prof() {
 	local f
 	
 	csleep 2
-	tget=$(ls ~/.mozilla/firefox/ | grep ${2} | tail -n 1)
+	#tget=$(ls ~/.mozilla/firefox/ | grep ${2} | tail -n 1)
+	
+	findprof ~/.mozilla/firefox/ ${2}
+	tget=${result}
+
 	p=$(pwd)
 
 	cd ~/.mozilla/firefox/${tget}
