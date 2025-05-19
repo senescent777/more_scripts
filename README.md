@@ -7,7 +7,7 @@ First version was from the year 2008.It seems that i have started to re-write it
 
 Maybe i'll make that new script work again some day.
 
-Use it at your own risk.
+
 
 2. obviously beowulf-vlc has something to do with a) that remastering-thing i've been doing b) installing vlc into devuan beowulf livecd.
    
@@ -15,3 +15,6 @@ I think there were also alternate sources.list which included "debian multimedia
 
 4. misc contains some configuration files i found useful with debian-ish distributions
 5. may have something to do with firefox profiles
+
+
+Use this stuff at your own risk.
