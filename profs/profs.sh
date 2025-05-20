@@ -67,10 +67,6 @@ function copy_to() {
 	[ -d ${3} ] || exit 70
 
 	local tget
-
-	#saattaisi onnistua ilman greppiäkin? man find...
-	#tget=$(find ${2} -type d | grep -v '+' | grep ${1} | head -n 1)
-	#dqb "TGET= ${tget}"
 	findprof ${2} ${1}
 	tget=${result}
 
@@ -142,9 +138,7 @@ function exp_prof() {
 	local tget
 	local p
 	local f
-	
 	csleep 2
-	#tget=$(ls ~/.mozilla/firefox | grep ${2} | tail -n 1)
 	
 	findprof ~/.mozilla/firefox ${2}
 	tget=${result}
