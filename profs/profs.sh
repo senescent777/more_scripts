@@ -135,6 +135,7 @@ function imp_prof() {
 	csleep 2
 }
 
+#HUOM.20525:toimiikohan findprof kuitebkaan?
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
 
@@ -143,17 +144,15 @@ function exp_prof() {
 	local f
 	
 	csleep 2
-	#tget=$(ls ~/.mozilla/firefox/ | grep ${2} | tail -n 1)
+	#tget=$(ls ~/.mozilla/firefox | grep ${2} | tail -n 1)
 	
-	findprof ~/.mozilla/firefox/ ${2}
+	findprof ~/.mozilla/firefox ${2}
 	tget=${result}
-
+	dqb "TG3T=${tget}"
+	csleep 5
 	p=$(pwd)
 
-	cd ~/.mozilla/firefox/${tget}
-	dqb "TG3T=${tget}"
-	csleep 2
-
+	cd ${tget}
 	${odio} touch ./rnd
 	${sco} ${n}:${n} ./rnd
 	${scm} 0644 ./rnd
