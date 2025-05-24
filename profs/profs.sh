@@ -132,6 +132,7 @@ function imp_prof() {
 }
 
 #HUOM.20525:toimiikohan findprof kuitebkaan?
+#HUOM.23535:se käännös-asetus-juttu?
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
 
