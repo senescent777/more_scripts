@@ -1,0 +1,3 @@
+deb https://debian.ethz.ch/debian stable main contrib non-free
+deb-src https://debian.ethz.ch/debian stable main contrib non-free
+
