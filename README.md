@@ -12,7 +12,7 @@ Maybe i'll make that new script work again some day.
 2. obviously beowulf-vlc has something to do with a) that remastering-thing i've been doing b) installing vlc into devuan beowulf livecd.
    
 I think there were also alternate sources.list which included "debian multimedia project":s repository. 
-It seems that tlv1 or tlv2 have suffered a case of bitrot. So i'll have to figure out how exactly did i build those archives all those years ago.
+Uodate:it seems that tlv1 or tlv2 have suffered a case of bitrot. So i'll have to figure out how exactly did i build those archives all those years ago.
 
 4. misc contains some configuration files i found useful with debian-ish distributions
 5. may have something to do with firefox profiles
