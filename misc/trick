@@ -1,0 +1,3 @@
+for f in $(dpkg -l | grep ii | grep -v lib | awk '{print $2}') ; do
+	sudo dpkg -reconfigure -plow ${f}
+done
