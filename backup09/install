@@ -10,5 +10,5 @@ nano jobs
 #TODO:tähän väliin se sha256-jekku tdstoon backupo-sudoers
 [ -f ./backup-sudoers ] && sudo cp ./backup-sudoers /etc/sudoers.d
 
-sudo cp -< ./bin /home/backupuser
+sudo cp -a ./bin /home/backupuser
 #TODO:cron-jutut
