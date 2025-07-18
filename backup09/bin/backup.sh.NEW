@@ -1,0 +1,30 @@
+#!/bin/bash
+. common.sh
+backupdir=""
+
+[ "$1" != "" ] || exit 1
+
+backupdir="$1"/"$datestr"
+
+$HOME/bin/dump_dir.sh $1 -d /boot -od $backupdir -ft ext3 -m 1 
+
+#"-d /boot" = varmuuskopioidaan hakemisto /boot
+#"-od $backupdir" = varmuuskopioidaan hakemiston $backupdir alle(SUHTEELLINEN SIJAINTI)
+#"-ft ext3" = kerrotaan hakemiston varmuuskopiointiskriptille että
+#              varmuuskopioinnin lähde on ext3-tyyppisessä 
+#              tiedostojärjestelmässä
+#"-m 1" = täytyy mountata kohdehakemiston sisältävä tiedostojärjestelmä
+#"-dt x" = onko kyseessä täysi/kuukausitason/viikkotason/päivätason backup
+
+
+
+   for  dir in $(mount | grep xfs | grep -v tmp | awk '{print $3}') ; do 
+        $HOME/bin/dump_dir.sh $1 -d $dir -od $backupdir -ft xfs -m 0 -dt
+  
+#dumpataan tässä kohtaa xfs-osiot(paitsi /tmp)
+  done
+  
+$HOME/bin/dump_dir.sh $1 -m umount
+#"-m umount" = käsky skriptille unmountata backup-osio
+  
+
