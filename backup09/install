@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo /usr/sbin/userdel backupuser
 sudo adduser --system backupuser
 
 #TODO:jobs'in parsetuksen kanssa jotain jatkokeh
@@ -9,5 +10,5 @@ nano jobs
 #TODO:tähän väliin se sha256-jekku tdstoon backupo-sudoers
 [ -f ./backup-sudoers ] && sudo cp ./backup-sudoers /etc/sudoers.d
 
-sudo cp ./*.sh /home/backupuser
+sudo cp -< ./bin /home/backupuser
 #TODO:cron-jutut
