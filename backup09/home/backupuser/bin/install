@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mount | grep /dev | grep -v tmp | grep -v pts | awk '{print $3,$5}' > jobs
-nano jobs
-
-#TODO:khjän backupuser lunti seur.
