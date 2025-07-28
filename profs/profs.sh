@@ -131,13 +131,14 @@ function imp_prof() {
 	csleep 2
 }
 
+#TODO:uusi versio oikeaan repositoryyn
 #HUOM.20525:toimiikohan findprof kuitebkaan?
 #HUOM.23535:se käännös-asetus-juttu?
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
 
 	local tget
-	local p
+	local oldd
 	local f
 	csleep 2
 	
@@ -145,7 +146,7 @@ function exp_prof() {
 	tget=${result}
 	dqb "TG3T=${tget}"
 	csleep 5
-	p=$(pwd)
+	oldd=$(pwd)
 
 	cd ${tget}
 	${odio} touch ./rnd
@@ -156,7 +157,7 @@ function exp_prof() {
 	${srat} -cvf ${1} ./rnd
 	for f in $(find . -name '*.js') ; do ${srat} -rf ${1} ${f} ; done
 	#*.js ja *.json kai oleellisimmat kalat
-	cd ${p}
+	cd ${oldd}
 
 	csleep 2
 	dqb "eprof.D03N"
