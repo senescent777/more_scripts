@@ -131,7 +131,7 @@ function imp_prof() {
 	csleep 2
 }
 
-#TODO:uusi versio oikeaan repositoryyn
+#VAIH:uusi versio oikeaan repositoryyn
 #HUOM.20525:toimiikohan findprof kuitebkaan?
 #HUOM.23535:se käännös-asetus-juttu?
 function exp_prof() {
