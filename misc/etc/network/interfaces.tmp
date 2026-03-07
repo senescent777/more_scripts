@@ -1,6 +1,12 @@
 auto lo
+
 iface lo inet loopback
 iface eth0 inet dhcp
+
+iface eth0:1 inet static
+	address 192.168.x.y/m
+	gateway 192.168.z.w
+
 iface wlan0 inet dhcp
 wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
