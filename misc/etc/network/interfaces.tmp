@@ -2,11 +2,19 @@ auto lo
 
 iface lo inet loopback
 iface eth0 inet dhcp
+	#pre_up /o/b/normal_prepare.sh
+	#up /o/b/normaldns_and_ntp.sh
+	#post_down /o/b/after.sh
 
-iface eth0:1 inet static
+iface eth0:s inet static
 	address 192.168.x.y/m
 	gateway 192.168.z.w
+	#pre-up dot.sh
+	#up /o/b/gy/normal_katastrof.sh
+	#post_down after.sh
 
 iface wlan0 inet dhcp
-wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-
+	wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+	#pre-up normal_prepare.sh
+	#up normaldns_and_ntp.sh
+	#post_down after.sh
