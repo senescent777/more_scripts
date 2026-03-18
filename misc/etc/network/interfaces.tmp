@@ -9,8 +9,8 @@ iface eth0 inet dhcp
 iface eth0:s inet static
 	address 192.168.x.y/m
 	gateway 192.168.z.w
-	#pre-up dot.sh
-	#up /o/b/gy/normal_katastrof.sh
+	#pre-up /opt/bin/tlb.bash
+	#up /oot/bin/aftr.bash
 	#post_down after.sh
 
 iface wlan0 inet dhcp
