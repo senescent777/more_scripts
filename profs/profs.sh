@@ -9,8 +9,7 @@ function oldprof() {
 	csleep 1
 
 	local tmp
-	#TODO:-c wrruun
-	tmp=$(grep -c ${1} /etc/passwd)
+	tmp=$(grep ${1} /etc/passwd | wc -l)
 
 	if [ ${tmp} -gt 0 ] ; then 
 		if [ -d ${1}/.mozilla ] ; then
@@ -31,7 +30,6 @@ function oldprof() {
 function createnew() {
 	dqb "cpfor_12 ${1} , ${2}"
 
-
 	[ -z "${1}" ] && exit 99
 	[ -z "${2}" ] && exit 98
 
@@ -40,8 +38,7 @@ function createnew() {
 	local tmp
 	local fox
 
-	#TODO:-c wrruun
-	tmp=$(grep -c ${1} /etc/passwd)
+	tmp=$(grep ${1} /etc/passwd | wc -l)
 	fox=$(${odio} which firefox)
 
 	if [ ${tmp} -gt 0 ] ; then 
