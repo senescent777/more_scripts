@@ -1,5 +1,5 @@
 function oldprof() {
-	dqb "cprof1 ${1} ${2}"
+	dqb "olfprof ${1} ${2}"
 	csleep 3
 
 	[ -z "${1}" ] && exit 99
@@ -25,10 +25,13 @@ function oldprof() {
 		ls -las ${1}/.mozilla/firefox;sleep 3
 		echo "eEXIT oldprof($1)"
 	fi
+
+	dqb "olfprof ${1} ${2} DONE"
+	csleep 3
 }
 
 function createnew() {
-	dqb "cpfor_12 ${1} , ${2}"
+	dqb "createnwet ${1} , ${2}"
 
 	[ -z "${1}" ] && exit 99
 	[ -z "${2}" ] && exit 98
@@ -56,6 +59,7 @@ function createnew() {
 	fi
 
 	csleep 3
+	dqb "createnwet ${1} , ${2} DONE"
 }
 
 function findprof() {
@@ -64,7 +68,7 @@ function findprof() {
 
 function copy_to() {
 	debug=1
-	dqb "cprof13 ${1} ${2} ${3}"
+	dqb "copy_to ${1} ; ${2} ; ${3}"
 	csleep 1
 	
 	[ -z "${1}" ] && exit 99
@@ -92,11 +96,11 @@ function copy_to() {
 	fi	
 
 	csleep 1
-	dqb "CPROF13 D0N3"
+	dqb "copy_to D0N3"
 }
 
 function access() {
-	dqb "CPFOR21 ${1} , ${2}"
+	dqb "access ${1} , ${2}"
 	csleep 1
 
 	[ -z "${1}" ] && exit 99
@@ -121,12 +125,12 @@ function access() {
 		${scm} o+w /tmp 
 	#fi
 
-	dqb "d0n3"
+	dqb "access d0n3"
 	csleep 1
 }
 
 function imp_prof() {
-	dqb "cprof ${1} ${2} ${3}"
+	dqb "imp_prof ${1} ${2} ${3}"
 	csleep 1
 
 	#riittäisikö tämmöiset tark?
@@ -150,7 +154,7 @@ function imp_prof() {
 	#	fi
 	#fi
 
-	dqb "cpforf dnoe"
+	dqb "imp_prof done dnoe"
 	csleep 1
 }
 
