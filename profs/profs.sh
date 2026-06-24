@@ -68,7 +68,7 @@ function copy_to() {
 	csleep 3
 
 	local f
-	for f in $(find ${3} -type f -name '*.js*') ; do mv ${f} ${tget} ; done		
+	for f in $(find ${3} -type f -name "*.js*" ) ; do mv ${f} ${tget} ; done		
 	
 	if [ ${debug} -eq 1 ] ; then
 		echo "AFT3R MV";sleep 3
@@ -145,7 +145,7 @@ function exp_prof() {
 	dd if=/dev/random bs=6 count=1 > ./rnd
 
 	${srat} -cvf ${1} ./rnd
-	for f in $(find . -name '*.js') ; do ${srat} -rf ${1} ${f} ; done
+	for f in $(find . -name "*.js" ) ; do ${srat} -rf ${1} ${f} ; done
 
 	cd ${oldd}
 
