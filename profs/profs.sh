@@ -170,7 +170,7 @@ function exp_prof() {
 	local tget
 	local oldd
 	local f
-	csleep §
+	csleep 1
 	
 	findprof ~/.mozilla/firefox ${2}
 	tget=${result}
