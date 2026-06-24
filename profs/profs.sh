@@ -1,8 +1,3 @@
-#dqb "#i've known since year 2003 that netscape/mozilla/firefox profiles can be a Pain In the Ass"
-#csleep 6
-
-#lukkotiedostojen hävitys oli kanssa 1 juttu mikä piti uistaa tehdä...
-
 function oldprof() {
 	dqb "cprof1 ${1} ${2}"
 	csleep 3
@@ -27,7 +22,7 @@ function oldprof() {
 }
 
 function createnew() {
-	dqb "cpfor_12 ${1},${2}" #HUOM.ei pitäisi tulla 2. param
+	dqb "cpfor_12 ${1},${2}"
 
 	local tmp
 	local fox
@@ -37,7 +32,6 @@ function createnew() {
 
 	if [ ${tmp} -gt 0 ] ; then 
 		if [ -x ${fox} ] ; then
-#			#${odio} -u ${1} toimisikohan ilmankn sudoa? kyl kait
 			${fox}&
 	
 			if [ $? -eq 0 ] ; then
@@ -91,7 +85,6 @@ function access() {
 	csleep 2
 
 	if [ x"${1}" != "x" ] ; then
-		#voisi mennä ilmankin sudoa tuossa alla...
 		dqb "shdgfsdhgfsdhgf"
 		csleep 2
 
@@ -131,9 +124,6 @@ function imp_prof() {
 	csleep 2
 }
 
-#VAIH:uusi versio oikeaan repositoryyn
-#HUOM.20525:toimiikohan findprof kuitebkaan?
-#HUOM.23535:se käännös-asetus-juttu?
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
 
@@ -156,7 +146,7 @@ function exp_prof() {
 
 	${srat} -cvf ${1} ./rnd
 	for f in $(find . -name '*.js') ; do ${srat} -rf ${1} ${f} ; done
-	#*.js ja *.json kai oleellisimmat kalat
+
 	cd ${oldd}
 
 	csleep 2
