@@ -2,7 +2,14 @@ function oldprof() {
 	dqb "cprof1 ${1} ${2}"
 	csleep 3
 
+	[ -z "${1}" ] && exit 99
+	#[ -z "${2}" ] && exit 98
+
+	dqb "pars ok"
+	csleep 1
+
 	local tmp
+	#TODO:-c wrruun
 	tmp=$(grep -c ${1} /etc/passwd)
 
 	if [ ${tmp} -gt 0 ] ; then 
@@ -22,11 +29,18 @@ function oldprof() {
 }
 
 function createnew() {
-	dqb "cpfor_12 ${1},${2}"
+	dqb "cpfor_12 ${1} , ${2}"
 
+
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+
+	dqb "pars ok"
+	csleep 1
 	local tmp
 	local fox
 
+	#TODO:-c wrruun
 	tmp=$(grep -c ${1} /etc/passwd)
 	fox=$(${odio} which firefox)
 
@@ -54,11 +68,15 @@ function findprof() {
 function copy_to() {
 	debug=1
 	dqb "cprof13 ${1} ${2} ${3}"
-	csleep 3
+	csleep 1
 	
+	[ -z "${1}" ] && exit 99
 	[ -d ${2} ] || exit 68
-	[ x"${3}" == "x" ] && exit 69
+	[ -z "${3}" ] && exit 69
 	[ -d ${3} ] || exit 70
+
+	dqb "pars.ok"
+	csleep 1
 
 	local tget
 	findprof ${2} ${1}
@@ -71,20 +89,26 @@ function copy_to() {
 	for f in $(find ${3} -type f -name "*.js*" ) ; do mv ${f} ${tget} ; done		
 	
 	if [ ${debug} -eq 1 ] ; then
-		echo "AFT3R MV";sleep 3
+		echo "AFT3R MV";sleep 2
 		ls -las ${tget}
-		sleep 3
+		sleep 2
 	fi	
 
-	csleep 3
+	csleep 1
 	dqb "CPROF13 D0N3"
 }
 
 function access() {
 	dqb "CPFOR21 ${1} , ${2}"
-	csleep 2
+	csleep 1
 
-	if [ x"${1}" != "x" ] ; then
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+
+	dqb "pars ok"
+	csleep 1
+
+	#if [ x"${1}" != "x" ] ; then
 		dqb "shdgfsdhgfsdhgf"
 		csleep 2
 
@@ -98,18 +122,27 @@ function access() {
 		${sco} -R ${1}:${1} ${2}/Downloads
 		${scm} u+wx ${2}/Downloads
 		${scm} o+w /tmp 
-	fi
+	#fi
 
 	dqb "d0n3"
-	csleep 2
+	csleep 1
 }
 
 function imp_prof() {
 	dqb "cprof ${1} ${2} ${3}"
-	csleep 2
+	csleep 1
 
-	if [ x"${2}" != "x" ] ; then 
-		if [ -d /home/${2} ] ; then 
+	#riittäisikö tämmöiset tark?
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+	[ -z "${3}" ] && exit 97
+	[ -d /home/${2} ] || exit 96
+
+	dqb "pars_ok"
+	csleep 1
+
+	#if [ x"${2}" != "x" ] ; then 
+	#	if [ -d /home/${2} ] ; then 
 			${scm} 0700 /home/${2}
 
 			oldprof /home/${2}
@@ -117,20 +150,26 @@ function imp_prof() {
 			createnew ${2}
 			copy_to ${1} /home/${2}/.mozilla/firefox ${3}
 			access ${2} /home/${2}
-		fi
-	fi
+	#	fi
+	#fi
 
 	dqb "cpforf dnoe"
-	csleep 2
+	csleep 1
 }
 
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
+	csleep 1
 
+	#riittäisikö tämmöiset tark?
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+
+	dqb "oars_ok"
 	local tget
 	local oldd
 	local f
-	csleep 2
+	csleep §
 	
 	findprof ~/.mozilla/firefox ${2}
 	tget=${result}
@@ -139,6 +178,8 @@ function exp_prof() {
 	oldd=$(pwd)
 
 	cd ${tget}
+
+	#240626:rnd-kikkailu edelleen tarpeellinen?
 	${odio} touch ./rnd
 	${sco} ${n}:${n} ./rnd
 	${scm} 0644 ./rnd
@@ -149,6 +190,6 @@ function exp_prof() {
 
 	cd ${oldd}
 
-	csleep 2
+	csleep 1
 	dqb "eprof.D03N"
 }
