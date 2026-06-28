@@ -1,14 +1,15 @@
-#dqb "#i've known since year 2003 that netscape/mozilla/firefox profiles can be a Pain In the Ass"
-#csleep 6
-
-#lukkotiedostojen hävitys oli kanssa 1 juttu mikä piti uistaa tehdä...
-
 function oldprof() {
-	dqb "cprof1 ${1} ${2}"
+	dqb "olfprof ${1} ${2}"
 	csleep 3
 
+	[ -z "${1}" ] && exit 99
+	#[ -z "${2}" ] && exit 98
+
+	dqb "pars ok"
+	csleep 1
+
 	local tmp
-	tmp=$(grep -c ${1} /etc/passwd)
+	tmp=$(grep ${1} /etc/passwd | wc -l)
 
 	if [ ${tmp} -gt 0 ] ; then 
 		if [ -d ${1}/.mozilla ] ; then
@@ -24,20 +25,27 @@ function oldprof() {
 		ls -las ${1}/.mozilla/firefox;sleep 3
 		echo "eEXIT oldprof($1)"
 	fi
+
+	dqb "olfprof ${1} ${2} DONE"
+	csleep 3
 }
 
 function createnew() {
-	dqb "cpfor_12 ${1},${2}" #HUOM.ei pitäisi tulla 2. param
+	dqb "createnwet ${1} , ${2}"
 
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+
+	dqb "pars ok"
+	csleep 1
 	local tmp
 	local fox
 
-	tmp=$(grep -c ${1} /etc/passwd)
+	tmp=$(grep ${1} /etc/passwd | wc -l)
 	fox=$(${odio} which firefox)
 
 	if [ ${tmp} -gt 0 ] ; then 
 		if [ -x ${fox} ] ; then
-#			#${odio} -u ${1} toimisikohan ilmankn sudoa? kyl kait
 			${fox}&
 	
 			if [ $? -eq 0 ] ; then
@@ -51,6 +59,7 @@ function createnew() {
 	fi
 
 	csleep 3
+	dqb "createnwet ${1} , ${2} DONE"
 }
 
 function findprof() {
@@ -59,12 +68,16 @@ function findprof() {
 
 function copy_to() {
 	debug=1
-	dqb "cprof13 ${1} ${2} ${3}"
-	csleep 3
+	dqb "copy_to ${1} ; ${2} ; ${3}"
+	csleep 1
 	
+	[ -z "${1}" ] && exit 99
 	[ -d ${2} ] || exit 68
-	[ x"${3}" == "x" ] && exit 69
+	[ -z "${3}" ] && exit 69
 	[ -d ${3} ] || exit 70
+
+	dqb "pars.ok"
+	csleep 1
 
 	local tget
 	findprof ${2} ${1}
@@ -74,24 +87,29 @@ function copy_to() {
 	csleep 3
 
 	local f
-	for f in $(find ${3} -type f -name '*.js*') ; do mv ${f} ${tget} ; done		
+	for f in $(find ${3} -type f -name "*.js*" ) ; do mv ${f} ${tget} ; done		
 	
 	if [ ${debug} -eq 1 ] ; then
-		echo "AFT3R MV";sleep 3
+		echo "AFT3R MV";sleep 2
 		ls -las ${tget}
-		sleep 3
+		sleep 2
 	fi	
 
-	csleep 3
-	dqb "CPROF13 D0N3"
+	csleep 1
+	dqb "copy_to D0N3"
 }
 
 function access() {
-	dqb "CPFOR21 ${1} , ${2}"
-	csleep 2
+	dqb "access ${1} , ${2}"
+	csleep 1
 
-	if [ x"${1}" != "x" ] ; then
-		#voisi mennä ilmankin sudoa tuossa alla...
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+
+	dqb "pars ok"
+	csleep 1
+
+	#if [ x"${1}" != "x" ] ; then
 		dqb "shdgfsdhgfsdhgf"
 		csleep 2
 
@@ -105,18 +123,27 @@ function access() {
 		${sco} -R ${1}:${1} ${2}/Downloads
 		${scm} u+wx ${2}/Downloads
 		${scm} o+w /tmp 
-	fi
+	#fi
 
-	dqb "d0n3"
-	csleep 2
+	dqb "access d0n3"
+	csleep 1
 }
 
 function imp_prof() {
-	dqb "cprof ${1} ${2} ${3}"
-	csleep 2
+	dqb "imp_prof ${1} ${2} ${3}"
+	csleep 1
 
-	if [ x"${2}" != "x" ] ; then 
-		if [ -d /home/${2} ] ; then 
+	#riittäisikö tämmöiset tark?
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+	[ -z "${3}" ] && exit 97
+	[ -d /home/${2} ] || exit 96
+
+	dqb "pars_ok"
+	csleep 1
+
+	#if [ x"${2}" != "x" ] ; then 
+	#	if [ -d /home/${2} ] ; then 
 			${scm} 0700 /home/${2}
 
 			oldprof /home/${2}
@@ -124,23 +151,26 @@ function imp_prof() {
 			createnew ${2}
 			copy_to ${1} /home/${2}/.mozilla/firefox ${3}
 			access ${2} /home/${2}
-		fi
-	fi
+	#	fi
+	#fi
 
-	dqb "cpforf dnoe"
-	csleep 2
+	dqb "imp_prof done dnoe"
+	csleep 1
 }
 
-#VAIH:uusi versio oikeaan repositoryyn
-#HUOM.20525:toimiikohan findprof kuitebkaan?
-#HUOM.23535:se käännös-asetus-juttu?
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
+	csleep 1
 
+	#riittäisikö tämmöiset tark?
+	[ -z "${1}" ] && exit 99
+	[ -z "${2}" ] && exit 98
+
+	dqb "oars_ok"
 	local tget
 	local oldd
 	local f
-	csleep 2
+	csleep 1
 	
 	findprof ~/.mozilla/firefox ${2}
 	tget=${result}
@@ -149,16 +179,18 @@ function exp_prof() {
 	oldd=$(pwd)
 
 	cd ${tget}
+
+	#240626:rnd-kikkailu edelleen tarpeellinen?
 	${odio} touch ./rnd
 	${sco} ${n}:${n} ./rnd
 	${scm} 0644 ./rnd
 	dd if=/dev/random bs=6 count=1 > ./rnd
 
 	${srat} -cvf ${1} ./rnd
-	for f in $(find . -name '*.js') ; do ${srat} -rf ${1} ${f} ; done
-	#*.js ja *.json kai oleellisimmat kalat
+	for f in $(find . -name "*.js" ) ; do ${srat} -rf ${1} ${f} ; done
+
 	cd ${oldd}
 
-	csleep 2
+	csleep 1
 	dqb "eprof.D03N"
 }
