@@ -1,15 +1,12 @@
 function oldprof() {
 	dqb "olfprof ${1} ${2}"
 	csleep 3
-
 	[ -z "${1}" ] && exit 99
-	#[ -z "${2}" ] && exit 98
-
 	dqb "pars ok"
 	csleep 1
 
 	local tmp
-	tmp=$(grep ${1} /etc/passwd | wc -l)
+	tmp=$(grep ${1} /etc/passwd | wc -l) #ÄLÄ PERKELEEN TONTTU KÄYTÄ "grep -c" MISSÄÄN	
 
 	if [ ${tmp} -gt 0 ] ; then 
 		if [ -d ${1}/.mozilla ] ; then
@@ -67,7 +64,7 @@ function findprof() {
 }
 
 function copy_to() {
-	debug=1
+	debug=1 #pois josqs?
 	dqb "copy_to ${1} ; ${2} ; ${3}"
 	csleep 1
 	
@@ -109,7 +106,6 @@ function access() {
 	dqb "pars ok"
 	csleep 1
 
-	#if [ x"${1}" != "x" ] ; then
 		dqb "shdgfsdhgfsdhgf"
 		csleep 2
 
@@ -123,7 +119,6 @@ function access() {
 		${sco} -R ${1}:${1} ${2}/Downloads
 		${scm} u+wx ${2}/Downloads
 		${scm} o+w /tmp 
-	#fi
 
 	dqb "access d0n3"
 	csleep 1
@@ -142,8 +137,6 @@ function imp_prof() {
 	dqb "pars_ok"
 	csleep 1
 
-	#if [ x"${2}" != "x" ] ; then 
-	#	if [ -d /home/${2} ] ; then 
 			${scm} 0700 /home/${2}
 
 			oldprof /home/${2}
@@ -151,8 +144,6 @@ function imp_prof() {
 			createnew ${2}
 			copy_to ${1} /home/${2}/.mozilla/firefox ${3}
 			access ${2} /home/${2}
-	#	fi
-	#fi
 
 	dqb "imp_prof done dnoe"
 	csleep 1
