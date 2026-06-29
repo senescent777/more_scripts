@@ -1,3 +1,5 @@
+#tdsto mennyt jo uudestaan wtuiksi vai ei?
+
 function oldprof() {
 	dqb "olfprof ${1} ${2}"
 	csleep 3
@@ -5,8 +7,7 @@ function oldprof() {
 	dqb "pars ok"
 	csleep 1
 
-	local tmp
-	tmp=$(grep ${1} /etc/passwd | wc -l) #ÄLÄ PERKELEEN TONTTU KÄYTÄ "grep -c" MISSÄÄN	
+	local tmp=$(grep ${1} /etc/passwd | wc -l) #ÄLÄ PERKELEEN TONTTU KÄYTÄ "grep -c" MISSÄÄN	
 
 	if [ ${tmp} -gt 0 ] ; then 
 		if [ -d ${1}/.mozilla ] ; then
@@ -31,15 +32,13 @@ function createnew() {
 	dqb "createnwet ${1} , ${2}"
 
 	[ -z "${1}" ] && exit 99
-	[ -z "${2}" ] && exit 98
+	#[ -z "${2}" ] && exit 98 #oliko tämä jo poistettu?
 
 	dqb "pars ok"
 	csleep 1
-	local tmp
-	local fox
 
-	tmp=$(grep ${1} /etc/passwd | wc -l)
-	fox=$(${odio} which firefox)
+	local tmp=$(grep ${1} /etc/passwd | wc -l)
+	local fox=$(${odio} which firefox)
 
 	if [ ${tmp} -gt 0 ] ; then 
 		if [ -x ${fox} ] ; then
@@ -80,7 +79,7 @@ function copy_to() {
 	findprof ${2} ${1}
 	tget=${result}
 
-	dqb "IN 3 SECONDS: sudo mv ${3}/* ${tget}"
+	dqb "IN 3 SECONDS: sudo mv ${3}/ * . js ${tget}"
 	csleep 3
 
 	local f
