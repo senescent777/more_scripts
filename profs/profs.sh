@@ -1,5 +1,7 @@
 #tdsto mennyt jo uudestaan wtuiksi vai ei?
 
+#TODO:ffox 147 liittyvät?
+
 function oldprof() {
 	dqb "olfprof ${1} ${2}"
 	csleep 3
