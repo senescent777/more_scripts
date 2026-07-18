@@ -1,6 +1,7 @@
 #tdsto mennyt jo uudestaan wtuiksi vai ei?
 
 #TODO:ffox 147 liittyvät?
+#ffox 147? https://www.phoronix.com/news/Firefox-147-XDG-Base-Directory liittyy?
 
 function oldprof() {
 	dqb "olfprof ${1} ${2}"
@@ -107,19 +108,19 @@ function access() {
 	dqb "pars ok"
 	csleep 1
 
-		dqb "shdgfsdhgfsdhgf"
-		csleep 2
+	dqb "shdgfsdhgfsdhgf"
+	csleep 2
 
-		if [ -d ${2}/.mozilla ] ; then 
-			${sco} -R ${1}:${1} ${2}/.mozilla
-			${scm} -R 0700 ${2}/.mozilla 	
-		fi
+	if [ -d ${2}/.mozilla ] ; then 
+		${sco} -R ${1}:${1} ${2}/.mozilla
+		${scm} -R 0700 ${2}/.mozilla 	
+	fi
 
-		[ -d ${2}/Downloads ] || ${odio} mkdir ${2}/Downloads
+	[ -d ${2}/Downloads ] || ${odio} mkdir ${2}/Downloads
 
-		${sco} -R ${1}:${1} ${2}/Downloads
-		${scm} u+wx ${2}/Downloads
-		${scm} o+w /tmp 
+	${sco} -R ${1}:${1} ${2}/Downloads
+	${scm} u+wx ${2}/Downloads
+	${scm} o+w /tmp 
 
 	dqb "access d0n3"
 	csleep 1
@@ -138,13 +139,13 @@ function imp_prof() {
 	dqb "pars_ok"
 	csleep 1
 
-			${scm} 0700 /home/${2}
+	${scm} 0700 /home/${2}
 
-			oldprof /home/${2}
-			${sco} -R ${2}:${2} /home/${2}/.mozilla/firefox
-			createnew ${2}
-			copy_to ${1} /home/${2}/.mozilla/firefox ${3}
-			access ${2} /home/${2}
+	oldprof /home/${2}
+	${sco} -R ${2}:${2} /home/${2}/.mozilla/firefox
+	createnew ${2}
+	copy_to ${1} /home/${2}/.mozilla/firefox ${3}
+	access ${2} /home/${2}
 
 	dqb "imp_prof done dnoe"
 	csleep 1
