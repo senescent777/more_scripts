@@ -1,14 +1,12 @@
-#tdsto mennyt jo uudestaan wtuiksi vai ei?
-
-#TODO:ffox 147 liittyvät?
+#TODO?:ffox 147 liittyvät?
 #ffox 147? https://www.phoronix.com/news/Firefox-147-XDG-Base-Directory liittyy?
 
 function oldprof() {
 	dqb "olfprof ${1} ${2}"
-	csleep 3
+	#csleep 3
 	[ -z "${1}" ] && exit 99
 	dqb "pars ok"
-	csleep 1
+	#csleep 1
 
 	local tmp=$(grep ${1} /etc/passwd | wc -l) #ÄLÄ PERKELEEN TONTTU KÄYTÄ "grep -c" MISSÄÄN	
 
@@ -22,13 +20,13 @@ function oldprof() {
 	fi
 
 	if [ ${debug} -eq 1 ] ; then
-		echo "AFTER MKDIR";sleep 3
-		ls -las ${1}/.mozilla/firefox;sleep 3
+		echo "AFTER MKDIR" #;sleep 3
+		ls -las ${1}/.mozilla/firefox #;sleep 3
 		echo "eEXIT oldprof($1)"
 	fi
 
 	dqb "olfprof ${1} ${2} DONE"
-	csleep 3
+	#csleep 3
 }
 
 function createnew() {
@@ -38,7 +36,7 @@ function createnew() {
 	#[ -z "${2}" ] && exit 98 #oliko tämä jo poistettu?
 
 	dqb "pars ok"
-	csleep 1
+	#csleep 1
 
 	local tmp=$(grep ${1} /etc/passwd | wc -l)
 	local fox=$(${odio} which firefox)
@@ -48,7 +46,7 @@ function createnew() {
 			${fox}&
 	
 			if [ $? -eq 0 ] ; then
-				sleep 3
+				#sleep 3
 				${whack} firefox-esr 
 				${whack} firefox 
 			fi
@@ -57,7 +55,7 @@ function createnew() {
 		fi
 	fi
 
-	csleep 3
+	#csleep 3
 	dqb "createnwet ${1} , ${2} DONE"
 }
 
@@ -68,7 +66,7 @@ function findprof() {
 function copy_to() {
 	debug=1 #pois josqs?
 	dqb "copy_to ${1} ; ${2} ; ${3}"
-	csleep 1
+	#csleep 1
 	
 	[ -z "${1}" ] && exit 99
 	[ -d ${2} ] || exit 68
@@ -76,40 +74,40 @@ function copy_to() {
 	[ -d ${3} ] || exit 70
 
 	dqb "pars.ok"
-	csleep 1
+	#csleep 1
 
 	local tget
 	findprof ${2} ${1}
 	tget=${result}
 
 	dqb "IN 3 SECONDS: sudo mv ${3}/ * . js ${tget}"
-	csleep 3
+	#csleep 3
 
 	local f
 	for f in $(find ${3} -type f -name "*.js*" ) ; do mv ${f} ${tget} ; done		
 	
 	if [ ${debug} -eq 1 ] ; then
-		echo "AFT3R MV";sleep 2
+		echo "AFT3R MV" #;sleep 2
 		ls -las ${tget}
-		sleep 2
+		#sleep 2
 	fi	
 
-	csleep 1
+	#csleep 1
 	dqb "copy_to D0N3"
 }
 
 function access() {
 	dqb "access ${1} , ${2}"
-	csleep 1
+	#csleep 1
 
 	[ -z "${1}" ] && exit 99
 	[ -z "${2}" ] && exit 98
 
 	dqb "pars ok"
-	csleep 1
+	#csleep 1
 
 	dqb "shdgfsdhgfsdhgf"
-	csleep 2
+	#csleep 2
 
 	if [ -d ${2}/.mozilla ] ; then 
 		${sco} -R ${1}:${1} ${2}/.mozilla
@@ -123,21 +121,21 @@ function access() {
 	${scm} o+w /tmp 
 
 	dqb "access d0n3"
-	csleep 1
+	#csleep 1
 }
 
 function imp_prof() {
 	dqb "imp_prof ${1} ${2} ${3}"
-	csleep 1
+	#csleep 1
 
-	#riittäisikö tämmöiset tark?
+	#riittäisikö tämmöiset t rk?
 	[ -z "${1}" ] && exit 99
 	[ -z "${2}" ] && exit 98
 	[ -z "${3}" ] && exit 97
 	[ -d /home/${2} ] || exit 96
 
 	dqb "pars_ok"
-	csleep 1
+	#csleep 1
 
 	${scm} 0700 /home/${2}
 
@@ -148,14 +146,14 @@ function imp_prof() {
 	access ${2} /home/${2}
 
 	dqb "imp_prof done dnoe"
-	csleep 1
+	#csleep 1
 }
 
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
-	csleep 1
+	#csleep 1
 
-	#riittäisikö tämmöiset tark?
+	#riittäisikö tämmöiset trk?
 	[ -z "${1}" ] && exit 99
 	[ -z "${2}" ] && exit 98
 
@@ -163,17 +161,17 @@ function exp_prof() {
 	local tget
 	local oldd
 	local f
-	csleep 1
+	#csleep 1
 	
 	findprof ~/.mozilla/firefox ${2}
 	tget=${result}
 	dqb "TG3T=${tget}"
-	csleep 5
+	#csleep 5
 	oldd=$(pwd)
 
 	cd ${tget}
 
-	#240626:rnd-kikkailu edelleen tarpeellinen?
+	#240626:rnd-kikkailu edelleen peellinen?
 	${odio} touch ./rnd
 	${sco} ${n}:${n} ./rnd
 	${scm} 0644 ./rnd
@@ -184,6 +182,6 @@ function exp_prof() {
 
 	cd ${oldd}
 
-	csleep 1
+	#csleep 1
 	dqb "eprof.D03N"
 }
