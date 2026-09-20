@@ -26,7 +26,7 @@ function oldprof() {
 	fi
 
 	dqb "olfprof ${1} ${2} DONE"
-	#csleep 3
+	csleep 3
 }
 
 function createnew() {
@@ -36,7 +36,7 @@ function createnew() {
 	#[ -z "${2}" ] && exit 98 #oliko tämä jo poistettu?
 
 	dqb "pars ok"
-	#csleep 1
+	csleep 1
 
 	local tmp=$(grep ${1} /etc/passwd | wc -l)
 	local fox=$(${odio} which firefox)
@@ -46,20 +46,26 @@ function createnew() {
 			${fox}&
 	
 			if [ $? -eq 0 ] ; then
-				#sleep 3
+				sleep 3 #trpeellinen viive?
 				${whack} firefox-esr 
-				${whack} firefox 
+				${whack} firefox
+			else
+				echo "COULD NOT START FOX"
 			fi
 		else
 			echo "https://www.youtube.com/watch?v=PjotFePip2M" 
 		fi
+	else
+		echo "NO SUCH AGENCY"
 	fi
 
-	#csleep 3
+	csleep 3 #tartteeko tämän?
 	dqb "createnwet ${1} , ${2} DONE"
 }
 
 function findprof() {
+	dqb "FINDPROF ( ${1} , ${2} ("
+
 	result=$(find ${1} -type d  | grep -v '+' | grep ${2}  | head -n 1 )
 }
 
@@ -79,9 +85,10 @@ function copy_to() {
 	local tget
 	findprof ${2} ${1}
 	tget=${result}
+	[ -z "tget" ] && dqb "TGET SHOULD NOT BE EMPTY!!!"
 
-	dqb "IN 3 SECONDS: sudo mv ${3}/ * . js ${tget}"
-	#csleep 3
+	dqb "IN 3 SECONDS: src= ${3}/\*.js tgt= ${tget}"
+	csleep 3
 
 	local f
 	for f in $(find ${3} -type f -name "*.js*" ) ; do mv ${f} ${tget} ; done		
@@ -89,10 +96,10 @@ function copy_to() {
 	if [ ${debug} -eq 1 ] ; then
 		echo "AFT3R MV" #;sleep 2
 		ls -las ${tget}
-		#sleep 2
+		sleep 2
 	fi	
 
-	#csleep 1
+	csleep 1
 	dqb "copy_to D0N3"
 }
 
@@ -126,7 +133,7 @@ function access() {
 
 function imp_prof() {
 	dqb "imp_prof ${1} ${2} ${3}"
-	#csleep 1
+	csleep 1
 
 	#riittäisikö tämmöiset t rk?
 	[ -z "${1}" ] && exit 99
@@ -135,8 +142,7 @@ function imp_prof() {
 	[ -d /home/${2} ] || exit 96
 
 	dqb "pars_ok"
-	#csleep 1
-
+	csleep 1
 	${scm} 0700 /home/${2}
 
 	oldprof /home/${2}
