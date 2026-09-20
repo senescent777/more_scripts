@@ -70,9 +70,9 @@ function findprof() {
 }
 
 function copy_to() {
-	debug=1 #pois josqs?
+	#debug=1 #pois josqs?
 	dqb "copy_to ${1} ; ${2} ; ${3}"
-	#csleep 1
+	csleep 1
 	
 	[ -z "${1}" ] && exit 99
 	[ -d ${2} ] || exit 68
@@ -80,15 +80,15 @@ function copy_to() {
 	[ -d ${3} ] || exit 70
 
 	dqb "pars.ok"
-	#csleep 1
+	csleep 1
 
 	local tget
 	findprof ${2} ${1}
 	tget=${result}
 	[ -z "tget" ] && dqb "TGET SHOULD NOT BE EMPTY!!!"
 
-	dqb "IN 3 SECONDS: src= ${3}/\*.js tgt= ${tget}"
-	csleep 3
+	dqb "IN 2 SECONDS:mv , src= ${3}/\*.js tgt= ${tget}"
+	csleep 2
 
 	local f
 	for f in $(find ${3} -type f -name "*.js*" ) ; do mv ${f} ${tget} ; done		
