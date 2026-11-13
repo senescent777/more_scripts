@@ -1,13 +1,17 @@
 #TODO?:ffox 147 liittyvät?
 #ffox 147? https://www.phoronix.com/news/Firefox-147-XDG-Base-Directory liittyy?
 
+if [ -d ~/.cache/mozilla/firefox/ ] ; then
+	echo "VAIH:TARKISTA PRKL TAAS KERRAN NE FFOX PROF IMPORT/EXPORT-JUTUT"
+	echo "should exit 99"
+	sleep 9
+fi
+
 function oldprof() {
 	dqb "olfprof ${1} ${2}"
-	#csleep 3
+
 	[ -z "${1}" ] && exit 99
 	dqb "pars ok"
-	#csleep 1
-
 	local tmp=$(grep ${1} /etc/passwd | wc -l) #ÄLÄ PERKELEEN TONTTU KÄYTÄ "grep -c" MISSÄÄN	
 
 	if [ ${tmp} -gt 0 ] ; then 
@@ -70,7 +74,7 @@ function findprof() {
 }
 
 function copy_to() {
-	#debug=1 #pois josqs?
+
 	dqb "copy_to ${1} ; ${2} ; ${3}"
 	csleep 1
 	
@@ -105,16 +109,9 @@ function copy_to() {
 
 function access() {
 	dqb "access ${1} , ${2}"
-	#csleep 1
-
 	[ -z "${1}" ] && exit 99
 	[ -z "${2}" ] && exit 98
-
-	dqb "pars ok"
-	#csleep 1
-
 	dqb "shdgfsdhgfsdhgf"
-	#csleep 2
 
 	if [ -d ${2}/.mozilla ] ; then 
 		${sco} -R ${1}:${1} ${2}/.mozilla
