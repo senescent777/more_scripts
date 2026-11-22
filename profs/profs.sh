@@ -1,11 +1,11 @@
-#TODO?:ffox 147 liittyvät?
+#TODO?:ffox 147 liittyvät? vieläkö tarttee säätää?
 #ffox 147? https://www.phoronix.com/news/Firefox-147-XDG-Base-Directory liittyy?
 
-if [ -d ~/.cache/mozilla/firefox/ ] ; then
-	echo "VAIH:TARKISTA PRKL TAAS KERRAN NE FFOX PROF IMPORT/EXPORT-JUTUT"
-	echo "should exit 99"
-	sleep 9
-fi
+#if [ -d ~/.cache/mozilla/firefox/ ] ; then
+#	dqb "DONE:TARKISTA PRKL TAAS KERRAN NE FFOX PROF IMPORT/EXPORT-JUTUT"
+#	dqb "should exit 99"
+#	csleep 9
+#fi
 
 function oldprof() {
 	dqb "olfprof ${1} ${2}"
@@ -125,7 +125,6 @@ function access() {
 	${scm} o+w /tmp 
 
 	dqb "access d0n3"
-	#csleep 1
 }
 
 function imp_prof() {
@@ -149,12 +148,10 @@ function imp_prof() {
 	access ${2} /home/${2}
 
 	dqb "imp_prof done dnoe"
-	#csleep 1
 }
 
 function exp_prof() {
 	dqb "exp_pros ${1} ${2}"
-	#csleep 1
 
 	#riittäisikö tämmöiset trk?
 	[ -z "${1}" ] && exit 99
@@ -164,12 +161,10 @@ function exp_prof() {
 	local tget
 	local oldd
 	local f
-	#csleep 1
 	
 	findprof ~/.mozilla/firefox ${2}
 	tget=${result}
 	dqb "TG3T=${tget}"
-	#csleep 5
 	oldd=$(pwd)
 
 	cd ${tget}
@@ -184,7 +179,5 @@ function exp_prof() {
 	for f in $(find . -name "*.js" ) ; do ${srat} -rf ${1} ${f} ; done
 
 	cd ${oldd}
-
-	#csleep 1
 	dqb "eprof.D03N"
 }
