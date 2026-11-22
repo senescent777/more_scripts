@@ -43,7 +43,7 @@ fi
 
 if [ ! -z "${branch}" ] ; then
 	branch=$(echo ${branch} | tr -dc a-zA-Z0-9/.)
-	branch="--branch ${branch}"
+	branch="--branch ${branch} --signle-branch "
 fi
 
 dqb "branch=${branch}"
@@ -78,7 +78,7 @@ fi
 ls -las ./*.conf
 csleep 5
 
-#VAIH:jos tämä merd toiseen repoon jatkossa?
+#DONE?:jos tämä merd toiseen repoon jatkossa?
 
 dqb "BFROE tig"
 csleep 2
